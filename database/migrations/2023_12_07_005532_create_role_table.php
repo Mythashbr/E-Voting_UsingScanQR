@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tb_user', function (Blueprint $table) {
+        Schema::create('tb_role', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('nim');
-            $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tb_user');
+        Schema::dropIfExists('tb_role');
     }
 };

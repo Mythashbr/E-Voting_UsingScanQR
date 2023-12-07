@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tb_user', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('nim');
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+        Schema::table('tb_detail_pemilihan', function (Blueprint $table) {
+            $table->foreignId('id_calon')->constrained('tb_calon')->after('id');
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tb_user');
+        Schema::table('tb_detail_pemilihan', function (Blueprint $table) {
+            $table->dropColumn('id_calon');
+        });
     }
 };
