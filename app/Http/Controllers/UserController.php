@@ -19,21 +19,19 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'nim' => 'required',
-            'password' => 'required',
-            'id_role' => 'required',
+            'username' => 'required',
+
         ], [
             'name.required' => 'Nama user tidak boleh kosong',
-            'nim.required' => 'NIM user tidak boleh kosong',
-            'password.required' => 'Password user tidak boleh kosong',
-            'id_role.required' => 'Role user tidak boleh kosong',
+            'username.required' => 'NIM user tidak boleh kosong',
+
         ]);
 
         User::create([
             'name' => $request->name,
-            'nim' => $request->nim,
-            'password' => $request->password,
-            'id_role' => $request->role,
+            'username' => $request->username,
+            'password' => $request->username,
+            'id_role' => 1,
         ]);
 
         return redirect()->back()->with('store', 'Data berhasil ditambahkan');
@@ -43,21 +41,19 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'nim' => 'required',
-            'password' => 'required',
-            'id_role' => 'required',
+            'username' => 'required',
+
         ], [
             'name.required' => 'Nama user tidak boleh kosong',
-            'nim.required' => 'NIM user tidak boleh kosong',
-            'password.required' => 'Password user tidak boleh kosong',
-            'id_role.required' => 'Role user tidak boleh kosong',
+            'username.required' => 'NIM user tidak boleh kosong',
+
         ]);
 
         User::where('id', $id)->update([
             'name' => $request->name,
-            'nim' => $request->nim,
-            'password' => $request->password,
-            'id_role' => $request->role,
+            'username' => $request->username,
+            'password' => $request->username,
+            'id_role' => 1,
         ]);
 
         return redirect()->back()->with('update', 'Data berhasil diubah');

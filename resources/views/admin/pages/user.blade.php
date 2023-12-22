@@ -1,12 +1,12 @@
 @extends('admin.layout.main')
 
-@section('title', 'Data Lomba')
+@section('title', 'Data User')
 
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-12">
-            <h2 class="mb-2 page-title">Data Lomba</h2>
+            <h2 class="mb-2 page-title">Data User</h2>
             {{-- <p class="card-text">DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool,
                     built upon the foundations of progressive enhancement, that adds all of these advanced features to any
                     HTML table. </p> --}}
@@ -43,11 +43,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Name</th>
-                                            <th>Link Sertifikat</th>
-                                            <th>Status</th>
-                                            <th>Status Pengumpulan</th>
-                                            <th>Status Pengumpulan KTM</th>
-                                            <th>Seminar</th>
+                                            <th>Username</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -55,17 +51,11 @@
                                         @php
                                         $no = 1;
                                         @endphp
-                                        @foreach($datalomba as $data)
+                                        @foreach($user as $data)
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $data->name }}</td>
-                                            <td>
-                                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#linkModal{{ $data->id }}">Detail Link</button>
-                                            </td>
-                                            <td>{{ $data->status }}</td>
-                                            <td>{{ $data->status_pengumpulan }}</td>
-                                            <td>{{ $data->status_pengumpulan_ktm }}</td>
-                                            <td>{{ $data->semnas->name }}</td>
+                                            <td>{{ $data->username }}</td>
 
 
                                             <td>
@@ -73,36 +63,6 @@
                                                 <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal{{ $data->id }}">Edit</button>
                                             </td>
                                         </tr>
-
-                                        <!-- Detail Link Sertifikat -->
-                                        <div class="modal fade" id="linkModal{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="defaultModalLabel">Edit Modal</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-
-
-                                                    <div class="modal-body">
-
-                                                        <div class="form-group">
-                                                            <label for="recipient-name" class="col-form-label">Link
-                                                            </label>
-                                                            <input type="text" value="{{ $data->link_sertifikat }}" name="link_sertifikat" class="form-control" id="recipient-name" required>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn mb-2 btn-danger" data-dismiss="modal">Close</button>
-
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
 
                                         <!-- Delete Modal -->
                                         <div class="modal fade" id="deleteModal{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
@@ -117,7 +77,7 @@
                                                     <div class="modal-body">
                                                         Yakin Ingin Menghapus Data {{ $data->name }}?
                                                     </div>
-                                                    <form action="/datalomba/{{ $data->id }}" method="post">
+                                                    <form action="/user/{{ $data->id }}" method="post">
                                                         @csrf
                                                         @method('delete')
                                                         <div class="modal-footer">
@@ -139,7 +99,7 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="/datalomba/{{ $data->id }}" method="POST">
+                                                    <form action="/user/{{ $data->id }}" method="POST">
                                                         @csrf
                                                         @method('PUT')
                                                         <div class="modal-body">
@@ -152,80 +112,11 @@
                                                             </div>
 
                                                             <div class="form-group">
-                                                                <label for="recipient-name" class="col-form-label">Link Sertifikat
+                                                                <label for="recipient-name" class="col-form-label">Username
                                                                 </label>
-                                                                <input type="text" value="{{ $data->link_sertifikat }}" name="link_sertifikat" class="form-control" id="recipient-name" required>
+                                                                <input type="text" value="{{ $data->username }}" name="username" class="form-control" id="recipient-name" required>
                                                             </div>
 
-
-                                                            <div class="form-group">
-                                                                <label for="example-select">Status</label>
-                                                                <select name="status" class="form-control" id="example-select">
-                                                                    @if($data->status == 'aktif')
-                                                                    <option selected value="aktif">
-                                                                        Aktif</option>
-                                                                    @else
-                                                                    <option selected value="tidak_aktif">
-                                                                        Tidak Aktif</option>
-                                                                    @endif
-                                                                    <option value="aktif">
-                                                                        Aktif</option>
-                                                                    <option value="tidak_aktif">
-                                                                        Tidak Aktif</option>
-
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="example-select">Status Pengumpulan</label>
-                                                                <select name="status_pengumpulan" class="form-control" id="example-select">
-                                                                    @if($data->status_pengumpulan == 'aktif')
-                                                                    <option selected value="aktif">
-                                                                        Aktif</option>
-                                                                    @else
-                                                                    <option selected value="tidak_aktif">
-                                                                        Tidak Aktif</option>
-                                                                    @endif
-                                                                    <option value="aktif">
-                                                                        Aktif</option>
-                                                                    <option value="tidak_aktif">
-                                                                        Tidak Aktif</option>
-
-                                                                </select>
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="example-select">Status Pengumpulan KTM</label>
-                                                                <select name="status_pengumpulan_ktm" class="form-control" id="example-select">
-                                                                    @if($data->status_pengumpulan_ktm == 'aktif')
-                                                                    <option selected value="aktif">
-                                                                        Aktif</option>
-                                                                    @else
-                                                                    <option selected value="tidak_aktif">
-                                                                        Tidak Aktif</option>
-                                                                    @endif
-                                                                    <option value="aktif">
-                                                                        Aktif</option>
-                                                                    <option value="tidak_aktif">
-                                                                        Tidak Aktif</option>
-
-                                                                </select>
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="example-select">Seminar</label>
-                                                                <select name="id_semnas" class="form-control" id="example-select">
-
-                                                                    <option selected value="{{ $data->id_semnas }}">{{ $data->semnas->name }}</option>
-
-                                                                    @foreach($datasemnas as $data)
-                                                                    <option value="{{ $data->id }}">{{ $data->name }}</option>
-                                                                    @endforeach
-
-                                                                </select>
-                                                            </div>
 
                                                         </div>
                                                         <div class="modal-footer">
@@ -251,73 +142,21 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="/datalomba" method="POST">
+                                            <form action="/user" method="POST">
                                                 @csrf
                                                 @method('POST')
                                                 <div class="modal-body">
 
-
                                                     <div class="form-group">
                                                         <label for="recipient-name" class="col-form-label">Name
                                                         </label>
-                                                        <input type="text" name="name" class="form-control" id="recipient-name" required>
+                                                        <input type="text" value="" name="name" class="form-control" id="recipient-name" required>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="recipient-name" class="col-form-label">Link Sertifikat
+                                                        <label for="recipient-name" class="col-form-label">Username
                                                         </label>
-                                                        <input type="text" name="link_sertifikat" class="form-control" id="recipient-name" required>
-                                                    </div>
-
-
-                                                    <div class="form-group">
-                                                        <label for="example-select">Status</label>
-                                                        <select name="status" class="form-control" id="example-select" required>
-                                                            <option value="" disabled selected>Pilih Status</option>
-                                                            <option value="aktif">
-                                                                Aktif</option>
-                                                            <option value="tidak_aktif">
-                                                                Tidak Aktif</option>
-
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="example-select">Status Pengumpulan</label>
-                                                        <select name="status_pengumpulan" class="form-control" id="example-select" required>
-                                                            <option value="" disabled selected>Pilih Status</option>
-                                                            <option value="aktif">
-                                                                Aktif</option>
-                                                            <option value="tidak_aktif">
-                                                                Tidak Aktif</option>
-
-                                                        </select>
-                                                    </div>
-
-
-                                                    <div class="form-group">
-                                                        <label for="example-select">Status Pengumpulan KTM</label>
-                                                        <select name="status_pengumpulan_ktm" class="form-control" id="example-select" required>
-                                                            <option value="" disabled selected>Pilih Status</option>
-                                                            <option value="aktif">
-                                                                Aktif</option>
-                                                            <option value="tidak_aktif">
-                                                                Tidak Aktif</option>
-
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="example-select">Seminar</label>
-                                                        <select name="id_semnas" class="form-control" id="example-select" required>
-
-                                                            <option selected disabled value="">Pilih Seminar</option>
-
-                                                            @foreach($datasemnas as $data)
-                                                            <option value="{{ $data->id }}">{{ $data->name }}</option>
-                                                            @endforeach
-
-                                                        </select>
+                                                        <input type="text" value="" name="username" class="form-control" id="recipient-name" required>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -435,7 +274,7 @@
 
 </script>
 @endif
-@if(Session::get('create'))
+@if(Session::get('store'))
 <script>
     Swal.fire({
         icon: 'success'

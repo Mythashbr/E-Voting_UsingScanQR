@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="https://semnasjkgsby.com/landing/logo/logo-semnas-2.png">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title') - National Health Dental Student Competition & Seminar</title>
+    <title>@yield('title') - Evoting Jurusan Kesehatan Gigi Polkesbaya</title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{ asset('admin/css/simplebar.css') }}">
     <!-- Fonts CSS -->

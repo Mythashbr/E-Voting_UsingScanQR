@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="https://semnasjkgsby.com/landing/logo/logo-semnas-2.png">
-    <title>Login</title>
+    <title>Login - Evoting Jurusan Kesehatan Gigi Polkesbaya</title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{ asset('admin/css/simplebar.css') }}">
     <!-- Fonts CSS -->
@@ -42,7 +42,7 @@
 
                 <div class="form-group">
                     <label for="inputEmail" class="sr-only">Email address</label>
-                    <input type="email" name="email" id="inputEmail" value="{{ Session::get('email') }}" class="form-control form-control-lg" placeholder="Email address" required="" autofocus="">
+                    <input type="text" name="username" id="inputEmail" value="{{ Session::get('username') }}" class="form-control form-control-lg" placeholder="Email address" required="" autofocus="">
                 </div>
                 <div class="form-group">
                     <label for="inputPassword" class="sr-only">Password</label>
