@@ -43,11 +43,11 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Name</th>
-                                            <th>Link Sertifikat</th>
-                                            <th>Status</th>
-                                            <th>Status Pengumpulan</th>
-                                            <th>Status Pengumpulan KTM</th>
-                                            <th>Seminar</th>
+                                            <th>Foto</th>
+                                            <th>Visi</th>
+                                            <th>Misi</th>
+                                            <th>No_Urut</th>
+                                            <th>Pemilihan</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -55,18 +55,21 @@
                                         @php
                                         $no = 1;
                                         @endphp
-                                        @foreach($datalomba as $data)
+                                        @foreach($calon as $data)
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $data->name }}</td>
                                             <td>
-                                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#linkModal{{ $data->id }}">Detail Link</button>
+                                                <img src="{{ asset('foto/'.$data->foto) }}" alt="user" class="rounded-circle" width="40">
                                             </td>
-                                            <td>{{ $data->status }}</td>
-                                            <td>{{ $data->status_pengumpulan }}</td>
-                                            <td>{{ $data->status_pengumpulan_ktm }}</td>
-                                            <td>{{ $data->semnas->name }}</td>
-
+                                            <td>
+                                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#visiModal{{ $data->id }}">Detail Visi</button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#misiModal{{ $data->id }}">Detail Misi</button>
+                                            </td>
+                                            <td>{{ $data->no_urut }}</td>
+                                            <td>{{ $data->pemilihan }}</td>
 
                                             <td>
                                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{ $data->id }}">Delete</button>
@@ -74,12 +77,12 @@
                                             </td>
                                         </tr>
 
-                                        <!-- Detail Link Sertifikat -->
-                                        <div class="modal fade" id="linkModal{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+                                        <!-- Detail Link Visi -->
+                                        <div class="modal fade" id="visiModal{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="defaultModalLabel">Edit Modal</h5>
+                                                        <h5 class="modal-title" id="defaultModalLabel">Detail Visi</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -89,9 +92,39 @@
                                                     <div class="modal-body">
 
                                                         <div class="form-group">
-                                                            <label for="recipient-name" class="col-form-label">Link
+                                                            <label for="recipient-name" class="col-form-label">Visi
                                                             </label>
-                                                            <input type="text" value="{{ $data->link_sertifikat }}" name="link_sertifikat" class="form-control" id="recipient-name" required>
+                                                            <textarea rows="4" class="form-control" id="recipient-name">{{ $data->visi }}</textarea>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn mb-2 btn-danger" data-dismiss="modal">Close</button>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Detail Link Visi -->
+                                        <div class="modal fade" id="misiModal{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="defaultModalLabel">Detail Misi</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+
+
+                                                    <div class="modal-body">
+
+                                                        <div class="form-group">
+                                                            <label for="recipient-name" class="col-form-label">Misi
+                                                            </label>
+                                                            <textarea rows="4" class="form-control" id="recipient-name">{{ $data->misi }}</textarea>
                                                         </div>
 
                                                     </div>
@@ -117,7 +150,7 @@
                                                     <div class="modal-body">
                                                         Yakin Ingin Menghapus Data {{ $data->name }}?
                                                     </div>
-                                                    <form action="/datalomba/{{ $data->id }}" method="post">
+                                                    <form action="/calon/{{ $data->id }}" method="post">
                                                         @csrf
                                                         @method('delete')
                                                         <div class="modal-footer">
@@ -139,7 +172,7 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="/datalomba/{{ $data->id }}" method="POST">
+                                                    <form action="/calon/{{ $data->id }}" method="POST">
                                                         @csrf
                                                         @method('PUT')
                                                         <div class="modal-body">
@@ -152,80 +185,47 @@
                                                             </div>
 
                                                             <div class="form-group">
-                                                                <label for="recipient-name" class="col-form-label">Link Sertifikat
+                                                                <label for="recipient-name" class="control-label">Foto</label>
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text">Upload</span>
+                                                                    </div>
+                                                                    <div class="custom-file">
+                                                                        <input name="foto" type="file" class="custom-file-input" id="inputGroupFile01">
+                                                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="recipient-name" class="col-form-label">Visi
                                                                 </label>
-                                                                <input type="text" value="{{ $data->link_sertifikat }}" name="link_sertifikat" class="form-control" id="recipient-name" required>
+                                                                <textarea rows="4" class="form-control" id="recipient-name" name="visi" required>{{ $data->visi }}</textarea>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="recipient-name" class="col-form-label">Misi
+                                                                </label>
+                                                                <textarea rows="4" class="form-control" id="recipient-name" name="misi" required>{{ $data->misi }}</textarea>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="recipient-name" class="col-form-label">No Urut
+                                                                </label>
+                                                                <input type="text" value="{{ $data->no_urut }}" name="no_urut" class="form-control" id="recipient-name" required>
                                                             </div>
 
 
                                                             <div class="form-group">
-                                                                <label for="example-select">Status</label>
+                                                                <label for="example-select">Pemilihan</label>
                                                                 <select name="status" class="form-control" id="example-select">
-                                                                    @if($data->status == 'aktif')
-                                                                    <option selected value="aktif">
-                                                                        Aktif</option>
-                                                                    @else
-                                                                    <option selected value="tidak_aktif">
-                                                                        Tidak Aktif</option>
-                                                                    @endif
-                                                                    <option value="aktif">
-                                                                        Aktif</option>
-                                                                    <option value="tidak_aktif">
-                                                                        Tidak Aktif</option>
-
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="example-select">Status Pengumpulan</label>
-                                                                <select name="status_pengumpulan" class="form-control" id="example-select">
-                                                                    @if($data->status_pengumpulan == 'aktif')
-                                                                    <option selected value="aktif">
-                                                                        Aktif</option>
-                                                                    @else
-                                                                    <option selected value="tidak_aktif">
-                                                                        Tidak Aktif</option>
-                                                                    @endif
-                                                                    <option value="aktif">
-                                                                        Aktif</option>
-                                                                    <option value="tidak_aktif">
-                                                                        Tidak Aktif</option>
-
-                                                                </select>
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="example-select">Status Pengumpulan KTM</label>
-                                                                <select name="status_pengumpulan_ktm" class="form-control" id="example-select">
-                                                                    @if($data->status_pengumpulan_ktm == 'aktif')
-                                                                    <option selected value="aktif">
-                                                                        Aktif</option>
-                                                                    @else
-                                                                    <option selected value="tidak_aktif">
-                                                                        Tidak Aktif</option>
-                                                                    @endif
-                                                                    <option value="aktif">
-                                                                        Aktif</option>
-                                                                    <option value="tidak_aktif">
-                                                                        Tidak Aktif</option>
-
-                                                                </select>
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="example-select">Seminar</label>
-                                                                <select name="id_semnas" class="form-control" id="example-select">
-
-                                                                    <option selected value="{{ $data->id_semnas }}">{{ $data->semnas->name }}</option>
-
-                                                                    @foreach($datasemnas as $data)
-                                                                    <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                                                    <option selected value="{{ $data->pemilihan->id }}">{{ $data->pemilihan->name }}</option>
+                                                                    @foreach($pemilihan as $dataa)
+                                                                    <option value="{{ $dataa->id }}">{{ $dataa->name }}</option>
                                                                     @endforeach
-
                                                                 </select>
                                                             </div>
+
 
                                                         </div>
                                                         <div class="modal-footer">
@@ -251,7 +251,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="/datalomba" method="POST">
+                                            <form action="/calon" method="POST">
                                                 @csrf
                                                 @method('POST')
                                                 <div class="modal-body">
@@ -260,63 +260,48 @@
                                                     <div class="form-group">
                                                         <label for="recipient-name" class="col-form-label">Name
                                                         </label>
-                                                        <input type="text" name="name" class="form-control" id="recipient-name" required>
+                                                        <input type="text" value="" name="name" class="form-control" id="recipient-name" required>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="recipient-name" class="col-form-label">Link Sertifikat
+                                                        <label for="recipient-name" class="control-label">Foto</label>
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">Upload</span>
+                                                            </div>
+                                                            <div class="custom-file">
+                                                                <input name="foto" type="file" class="custom-file-input" id="inputGroupFile01">
+                                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="recipient-name" class="col-form-label">Visi
                                                         </label>
-                                                        <input type="text" name="link_sertifikat" class="form-control" id="recipient-name" required>
+                                                        <textarea rows="4" class="form-control" id="recipient-name" name="visi" required></textarea>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="recipient-name" class="col-form-label">Misi
+                                                        </label>
+                                                        <textarea rows="4" class="form-control" id="recipient-name" name="misi" required></textarea>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="recipient-name" class="col-form-label">No Urut
+                                                        </label>
+                                                        <input type="text" value="" name="no_urut" class="form-control" id="recipient-name" required>
                                                     </div>
 
 
                                                     <div class="form-group">
-                                                        <label for="example-select">Status</label>
-                                                        <select name="status" class="form-control" id="example-select" required>
-                                                            <option value="" disabled selected>Pilih Status</option>
-                                                            <option value="aktif">
-                                                                Aktif</option>
-                                                            <option value="tidak_aktif">
-                                                                Tidak Aktif</option>
-
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="example-select">Status Pengumpulan</label>
-                                                        <select name="status_pengumpulan" class="form-control" id="example-select" required>
-                                                            <option value="" disabled selected>Pilih Status</option>
-                                                            <option value="aktif">
-                                                                Aktif</option>
-                                                            <option value="tidak_aktif">
-                                                                Tidak Aktif</option>
-
-                                                        </select>
-                                                    </div>
-
-
-                                                    <div class="form-group">
-                                                        <label for="example-select">Status Pengumpulan KTM</label>
-                                                        <select name="status_pengumpulan_ktm" class="form-control" id="example-select" required>
-                                                            <option value="" disabled selected>Pilih Status</option>
-                                                            <option value="aktif">
-                                                                Aktif</option>
-                                                            <option value="tidak_aktif">
-                                                                Tidak Aktif</option>
-
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="example-select">Seminar</label>
-                                                        <select name="id_semnas" class="form-control" id="example-select" required>
-
-                                                            <option selected disabled value="">Pilih Seminar</option>
-
-                                                            @foreach($datasemnas as $data)
-                                                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                                        <label for="example-select">Pemilihan</label>
+                                                        <select name="status" class="form-control" id="example-select">
+                                                            <option selected disabled>Pilih Pemilihan</option>
+                                                            @foreach($pemilihan as $dataa)
+                                                            <option value="{{ $dataa->id }}">{{ $dataa->name }}</option>
                                                             @endforeach
-
                                                         </select>
                                                     </div>
                                                 </div>

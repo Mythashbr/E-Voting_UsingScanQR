@@ -13,7 +13,8 @@ class CalonController extends Controller
         $pemilihan = Pemilihan::all();
         $calon = Calon::all();
         return view('admin.pages.calon', [
-            'calon' => $calon
+            'calon' => $calon,
+            'pemilihan' => $pemilihan,
         ]);
     }
 

@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = User::all();
+        $user = User::all()->where('id_role', '!=', '1');
         return view('admin.pages.user', [
             'user' => $user
         ]);

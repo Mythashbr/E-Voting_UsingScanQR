@@ -24,7 +24,7 @@
 <body class="light ">
     <div class="wrapper vh-100">
         <div class="row align-items-center h-100">
-            <form action="/adminlogin" method="POST" class="col-lg-3 col-md-4 col-10 mx-auto text-center">
+            <form action="/login" method="POST" class="col-lg-3 col-md-4 col-10 mx-auto text-center">
                 @csrf
                 <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="">
                     {{-- <svg version="1.1" id="logo" class="navbar-brand-img brand-md" xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@
                 <h1 class="h6 mb-3">Sign in</h1>
 
                 <div class="form-group">
-                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <label for="inputEmail" class="sr-only">Username</label>
                     <input type="text" name="username" id="inputEmail" value="{{ Session::get('username') }}" class="form-control form-control-lg" placeholder="Email address" required="" autofocus="">
                 </div>
                 <div class="form-group">

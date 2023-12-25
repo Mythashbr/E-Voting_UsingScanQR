@@ -218,7 +218,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="defaultModalLabel">Delete Modal</h5>
+                    <h5 class="modal-title" id="defaultModalLabel">Modal Logout</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -228,7 +228,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn mb-2 btn-success" data-dismiss="modal">Close</button>
-                    <a href="/adminlogout" class="btn mb-2 btn-danger">Yes</a>
+                    <a href="/logout" class="btn mb-2 btn-danger">Yes</a>
                 </div>
             </div>
         </div>
