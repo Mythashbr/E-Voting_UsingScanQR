@@ -24,23 +24,23 @@ Route::get('/login', function () {
 
 // auth
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::get('/logout', [AuthController::class, 'logout'])->middleware('IsLogin');
 
 
 // user
-Route::get('/user', [UserController::class, 'index']);
-Route::post('/user', [UserController::class, 'store']);
-Route::put('/user/{id}', [UserController::class, 'update']);
-Route::delete('/user/{id}', [UserController::class, 'destroy']);
+Route::get('/user', [UserController::class, 'index'])->middleware('IsLogin', 'IsAdmin');
+Route::post('/user', [UserController::class, 'store'])->middleware('IsLogin', 'IsAdmin');
+Route::put('/user/{id}', [UserController::class, 'update'])->middleware('IsLogin', 'IsAdmin');
+Route::delete('/user/{id}', [UserController::class, 'destroy'])->middleware('IsLogin', 'IsAdmin');
 
 // pemilihan
-Route::get('/pemilihan', [PemilihanController::class, 'index']);
-Route::post('/pemilihan', [PemilihanController::class, 'store']);
-Route::put('/pemilihan/{id}', [PemilihanController::class, 'update']);
-Route::delete('/pemilihan/{id}', [PemilihanController::class, 'destroy']);
+Route::get('/pemilihan', [PemilihanController::class, 'index'])->middleware('IsLogin', 'IsAdmin');
+Route::post('/pemilihan', [PemilihanController::class, 'store'])->middleware('IsLogin', 'IsAdmin');
+Route::put('/pemilihan/{id}', [PemilihanController::class, 'update'])->middleware('IsLogin', 'IsAdmin');
+Route::delete('/pemilihan/{id}', [PemilihanController::class, 'destroy'])->middleware('IsLogin', 'IsAdmin');
 
 // calon
-Route::get('/calon', [CalonController::class, 'index']);
-Route::post('/calon', [CalonController::class, 'store']);
-Route::put('/calon/{id}', [CalonController::class, 'update']);
-Route::delete('/calon/{id}', [CalonController::class, 'destroy']);
+Route::get('/calon', [CalonController::class, 'index'])->middleware('IsLogin', 'IsAdmin');
+Route::post('/calon', [CalonController::class, 'store'])->middleware('IsLogin', 'IsAdmin');
+Route::put('/calon/{id}', [CalonController::class, 'update'])->middleware('IsLogin', 'IsAdmin');
+Route::delete('/calon/{id}', [CalonController::class, 'destroy'])->middleware('IsLogin', 'IsAdmin');
