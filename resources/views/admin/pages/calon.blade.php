@@ -46,7 +46,7 @@
                                             <th>Foto</th>
                                             <th>Visi</th>
                                             <th>Misi</th>
-                                            <th>No_Urut</th>
+                                            <th>No Urut</th>
                                             <th>Pemilihan</th>
                                             <th>Action</th>
                                         </tr>
@@ -60,7 +60,7 @@
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $data->name }}</td>
                                             <td>
-                                                <img src="{{ asset('foto/'.$data->foto) }}" alt="user" class="rounded-circle" width="40">
+                                                <img src="{{ asset('images/'.$data->foto) }}" alt="user" class="rounded-circle" width="40">
                                             </td>
                                             <td>
                                                 <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#visiModal{{ $data->id }}">Detail Visi</button>
@@ -69,7 +69,7 @@
                                                 <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#misiModal{{ $data->id }}">Detail Misi</button>
                                             </td>
                                             <td>{{ $data->no_urut }}</td>
-                                            <td>{{ $data->pemilihan }}</td>
+                                            <td>{{ $data->pemilihan->name }}</td>
 
                                             <td>
                                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{ $data->id }}">Delete</button>
@@ -172,7 +172,7 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="/calon/{{ $data->id }}" method="POST">
+                                                    <form action="/calon/{{ $data->id }}" method="POST" enctype="multipart/form-data">
                                                         @csrf
                                                         @method('PUT')
                                                         <div class="modal-body">
@@ -218,7 +218,7 @@
 
                                                             <div class="form-group">
                                                                 <label for="example-select">Pemilihan</label>
-                                                                <select name="status" class="form-control" id="example-select">
+                                                                <select name="id_pemilihan" class="form-control" id="example-select">
                                                                     <option selected value="{{ $data->pemilihan->id }}">{{ $data->pemilihan->name }}</option>
                                                                     @foreach($pemilihan as $dataa)
                                                                     <option value="{{ $dataa->id }}">{{ $dataa->name }}</option>
@@ -251,7 +251,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="/calon" method="POST">
+                                            <form action="/calon" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('POST')
                                                 <div class="modal-body">
@@ -297,7 +297,7 @@
 
                                                     <div class="form-group">
                                                         <label for="example-select">Pemilihan</label>
-                                                        <select name="status" class="form-control" id="example-select">
+                                                        <select name="id_pemilihan" class="form-control" id="example-select">
                                                             <option selected disabled>Pilih Pemilihan</option>
                                                             @foreach($pemilihan as $dataa)
                                                             <option value="{{ $dataa->id }}">{{ $dataa->name }}</option>

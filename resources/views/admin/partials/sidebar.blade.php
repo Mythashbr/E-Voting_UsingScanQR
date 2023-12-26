@@ -7,7 +7,7 @@
         <div class="w-100 mb-4 d-flex">
             <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="/dashboard">
 
-                <img src="https://www.semnasjkgsby.com/user/favicons/hikes.png" height="100px" alt="Logo PKS">
+                <img src="{{ asset('admin/logo/logo-kesgi.png') }}" height="100px">
             </a>
         </div>
         <ul class="navbar-nav flex-fill w-100 mb-2">

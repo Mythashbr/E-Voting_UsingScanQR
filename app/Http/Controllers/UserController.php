@@ -19,11 +19,13 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'username' => 'required',
+            'username' => 'required|unique:tb_user',
+
 
         ], [
             'name.required' => 'Nama user tidak boleh kosong',
             'username.required' => 'NIM user tidak boleh kosong',
+            'username.unique' => 'NIM user sudah terdaftar',
 
         ]);
 
@@ -31,7 +33,7 @@ class UserController extends Controller
             'name' => $request->name,
             'username' => $request->username,
             'password' => $request->username,
-            'id_role' => 1,
+            'id_role' => 2,
         ]);
 
         return redirect()->back()->with('store', 'Data berhasil ditambahkan');
@@ -41,11 +43,12 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'username' => 'required',
+            'username' => 'required|unique:tb_user,username,' . $id,
 
         ], [
             'name.required' => 'Nama user tidak boleh kosong',
             'username.required' => 'NIM user tidak boleh kosong',
+            'username.unique' => 'NIM user sudah terdaftar',
 
         ]);
 
@@ -53,7 +56,7 @@ class UserController extends Controller
             'name' => $request->name,
             'username' => $request->username,
             'password' => $request->username,
-            'id_role' => 1,
+            'id_role' => 2,
         ]);
 
         return redirect()->back()->with('update', 'Data berhasil diubah');

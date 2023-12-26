@@ -11,7 +11,7 @@ class CalonController extends Controller
     public function index()
     {
         $pemilihan = Pemilihan::all();
-        $calon = Calon::all();
+        $calon = Calon::with('pemilihan')->get();
         return view('admin.pages.calon', [
             'calon' => $calon,
             'pemilihan' => $pemilihan,
@@ -22,7 +22,7 @@ class CalonController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'foto' => 'required|image',
             'visi' => 'required',
             'misi' => 'required',
             'no_urut' => 'required',
@@ -31,8 +31,8 @@ class CalonController extends Controller
             'name.required' => 'Nama calon tidak boleh kosong',
             'foto.required' => 'Foto calon tidak boleh kosong',
             'foto.image' => 'Foto calon harus berupa gambar',
-            'foto.mimes' => 'Foto calon harus berupa gambar',
-            'foto.max' => 'Foto calon maksimal 2MB',
+            // 'foto.mimes' => 'Foto calon harus berupa gambar',
+            // 'foto.max' => 'Foto calon maksimal 2MB',
             'visi.required' => 'Visi calon tidak boleh kosong',
             'misi.required' => 'Misi calon tidak boleh kosong',
             'no_urut.required' => 'Nomor urut calon tidak boleh kosong',
@@ -54,23 +54,23 @@ class CalonController extends Controller
             'id_pemilihan' => $request->id_pemilihan,
         ]);
 
-        return redirect()->back()->with('store', 'Data berhasil ditambahkan');
+        return redirect()->back()->with('create', 'Data berhasil ditambahkan');
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
-            'foto' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'foto' => 'image',
             'visi' => 'required',
             'misi' => 'required',
             'no_urut' => 'required',
             'id_pemilihan' => 'required',
         ], [
-            'name.required' => 'Nama calon tidak boleh kosong',
+            'name.required' => 'Nama calon tidak boleh skosong',
             'foto.image' => 'Foto calon harus berupa gambar',
-            'foto.mimes' => 'Foto calon harus berupa gambar',
-            'foto.max' => 'Foto calon maksimal 2MB',
+            // 'foto.mimes' => 'Foto calon harus berupa gambar',
+            // 'foto.max' => 'Foto calon maksimal 2MB',
             'visi.required' => 'Visi calon tidak boleh kosong',
             'misi.required' => 'Misi calon tidak boleh kosong',
             'no_urut.required' => 'Nomor urut calon tidak boleh kosong',
