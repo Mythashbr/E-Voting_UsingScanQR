@@ -18,6 +18,10 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+Route::get('/', function () {
+    return view('landing.pages.landing');
+});
+
 Route::get('/login', function () {
     return view('admin.login');
 });
