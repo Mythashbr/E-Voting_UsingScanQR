@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Pemira Hima Jurusan Kesehatan Gigi Polkesbaya</title>
+    <title>@yield('title') Pemira Hima Jurusan Kesehatan Gigi</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{ asset('landing/assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('landing/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('admin/logo/logo-kesgi.png') }}" rel="icon">
+    <link href="{{ asset('admin/logo/logo-kesgi.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -29,9 +29,9 @@
     <link href="{{ asset('landing/assets/css/style.css') }}" rel="stylesheet">
 
     <!-- =======================================================
-  * Template Name: Dewi
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/
+  * Template Name: Gp
+  * Updated: Nov 25 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
@@ -41,15 +41,14 @@
 
     @include('landing.partials.header')
 
-    @yield('hero')
 
     <main id="main">
 
         @yield('content')
 
+
     </main><!-- End #main -->
 
-    <!-- ======= Footer ======= -->
     @include('landing.partials.footer')
 
     <div id="preloader"></div>

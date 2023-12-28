@@ -6,6 +6,7 @@ use App\Http\Controllers\PemilihanController;
 use App\Http\Controllers\DetailPemilihanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LandingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +19,13 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('landing.pages.landing');
-});
+Route::get('/', [LandingController::class, 'index']);
 
 Route::get('/login', function () {
     return view('admin.login');
 });
+
+# ADMIN
 
 // auth
 Route::post('/login', [AuthController::class, 'login']);
@@ -48,3 +49,7 @@ Route::get('/calon', [CalonController::class, 'index'])->middleware('IsLogin', '
 Route::post('/calon', [CalonController::class, 'store'])->middleware('IsLogin', 'IsAdmin');
 Route::put('/calon/{id}', [CalonController::class, 'update'])->middleware('IsLogin', 'IsAdmin');
 Route::delete('/calon/{id}', [CalonController::class, 'destroy'])->middleware('IsLogin', 'IsAdmin');
+
+# LANDING
+
+route::get('/detail-calon/{id}', [LandingController::class, 'detail']);

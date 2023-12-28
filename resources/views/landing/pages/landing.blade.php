@@ -1,142 +1,53 @@
 @extends('landing.layout.main')
 
-@section('hero')
+@section('content')
 <!-- ======= Hero Section ======= -->
-<section id="hero">
-    <div class="hero-container" data-aos="fade-up" data-aos-delay="150">
-        <h1>Pemira Hima Jurusan Kesehatan Gigi</h1>
-        <h2>Poltekkes Kemenkes Surabaya</h2>
-        {{-- <div class="m-4 mb-2 mt-2">
-            <a href="#team1" class="btn-get-started scrollto">Lihat Calon Ketua</a>
-            <a href="#team2" class="btn-get-started scrollto">Lihat Calon Wakil</a>
-            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
-        </div> --}}
+<section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+        <div class="text-center justify-content-center" data-aos="fade-up" data-aos-delay="150">
+            <img src="{{ asset('admin/logo/logo-kesgi.png') }}" height="200px" width="200px" alt="">
+            <div class="text-center m-4 ">
+                <h1>Pemira Himpunan Jurusan Kesehatan Gigi</h1>
+                <h2>Politeknik Kesehatan Kemenkes Surabaya</h2>
+            </div>
+        </div>
+
+
 
     </div>
 </section><!-- End Hero -->
-@endsection
 
-@section('content')
-
-<!-- ======= Calon Ketua ======= -->
-<section id="team1" class="team section-bg">
+<section id="portfolio-details" class="portfolio-details">
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
             <h2>Kandidat</h2>
-            <p>Calon Ketua Hima Jurusan Kesehatan Gigi</p>
+            <p>Calon Ketua Hima JKG</p>
         </div>
 
-        <div class="row">
+        <div class="row justify-content-center">
 
+            <?php
+            $no = 1;
+            ?>
             <div class="col-lg-4 col-md-6">
-                <div class="member" data-aos="fade-up" data-aos-delay="100">
-                    <div class="pic"><img src="{{ asset('landing/assets/img/team/team-1.jpg') }}" class="img-fluid" alt=""></div>
-                    <div class="member-info">
-                        <h4>Walter White</h4>
-                        <span>Chief Executive Officer</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
+                <div class="portfolio-details-slider swiper">
+                    <div class="swiper-wrapper align-items-center">
+                        @foreach ($calonketua as $calonketua)
+                        <div class="swiper-slide mb-5">
+                            <img src="{{ asset('landing/assets/img/portfolio/portfolio-1.jpg') }}" alt="">
+                            <div class="text-center swiper-slide-info mt-3">
+                                <h3>{{ $calonketua->name }}</h3>
+                                <a href="/detail-calon/{{ $calonketua->id }}" class="btn btn-warning btn-sm">Detail Calon</a>
+                                <p hidden>
+                                    testhahahha
+                                </p>
+                            </div>
                         </div>
+                        @endforeach
                     </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="member">
-                    <div class="pic"><img src="{{ asset('landing/assets/img/team/team-2.jpg') }}" class="img-fluid" alt=""></div>
-                    <div class="member-info">
-                        <h4>Sarah Jhonson</h4>
-                        <span>Product Manager</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="member">
-                    <div class="pic"><img src="{{ asset('landing/assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div>
-                    <div class="member-info">
-                        <h4>William Anderson</h4>
-                        <span>CTO</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<!-- ======= Calon Wakil ======= -->
-<section id="team2" class="team section-bg">
-    <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-            <h2>Kandidat</h2>
-            <p>Calon Wakil Hima Jurusan Kesehatan Gigi</p>
-        </div>
-
-        <div class="row">
-
-            <div class="col-lg-4 col-md-6">
-                <div class="member" data-aos="fade-up" data-aos-delay="100">
-                    <div class="pic"><img src="{{ asset('landing/assets/img/team/team-1.jpg') }}" class="img-fluid" alt=""></div>
-                    <div class="member-info">
-                        <h4>Walter White</h4>
-                        <span>Chief Executive Officer</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="member">
-                    <div class="pic"><img src="{{ asset('landing/assets/img/team/team-2.jpg') }}" class="img-fluid" alt=""></div>
-                    <div class="member-info">
-                        <h4>Sarah Jhonson</h4>
-                        <span>Product Manager</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="member">
-                    <div class="pic"><img src="{{ asset('landing/assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div>
-                    <div class="member-info">
-                        <h4>William Anderson</h4>
-                        <span>CTO</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
+                    <div class="swiper-pagination"></div>
                 </div>
             </div>
 
@@ -144,6 +55,45 @@
 
     </div>
 </section>
+
+<section id="portfolio-details" class="portfolio-details">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Kandidat</h2>
+            <p>Calon Wakil Hima JKG</p>
+        </div>
+
+        <div class="row justify-content-center">
+
+            <?php
+            $no = 1;
+            ?>
+            <div class="col-lg-4 col-md-6">
+                <div class="portfolio-details-slider swiper">
+                    <div class="swiper-wrapper align-items-center">
+                        @foreach ($calonwakil as $calonwakil)
+                        <div class="swiper-slide mb-5">
+                            <img src="{{ asset('landing/assets/img/portfolio/portfolio-1.jpg') }}" alt="">
+                            <div class="text-center swiper-slide-info mt-3">
+                                <h3>{{ $calonwakil->name }}</h3>
+                                <a href="/detail-calon/{{ $calonwakil->id }}" class="btn btn-warning btn-sm">Detail Calon</a>
+                                <p hidden>
+                                    testhahahha
+                                </p>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
 
 
 @endsection
