@@ -97,3 +97,19 @@
 
 
 @endsection
+
+@section('sweetalert')
+@if (Session::get('login'))
+<script>
+    Swal.fire("Good", "Login Berhasil", "success");
+
+</script>
+@endif
+
+@if (Session::get('logout'))
+<script>
+    Swal.fire("Good!", "Logout Berhasil", "success");
+
+</script>
+@endif
+@endsection

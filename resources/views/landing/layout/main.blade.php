@@ -46,6 +46,57 @@
 
         @yield('content')
 
+        <!-- Modal Login -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-body">
+                            <form action="/login" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Username</label>
+                                    <input type="text" name="username" class="form-control" id="exampleFormControlInput2" placeholder="Enter Your Username" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Password</label>
+                                    <input type="password" name="password" class="form-control" id="exampleFormControlInput2" placeholder="Enter Your Password" required>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <button type="submit" class="btn btn-success">Login</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Logout -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Peringatan</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-body">
+                            <p>Anda Yakin Akan Keluar ?</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                        <a href="/logout" class="btn btn-danger">Yes</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </main><!-- End #main -->
 
@@ -62,6 +113,8 @@
     <script src="{{ asset('landing/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('landing/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('landing/assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Template Main JS File -->
     <script src="{{ asset('landing/assets/js/main.js') }}"></script>
@@ -69,3 +122,5 @@
 </body>
 
 </html>
+
+@yield('sweetalert')

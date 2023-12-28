@@ -27,7 +27,7 @@ class AuthController extends Controller
                 } else {
                     $request->session()->regenerate();
 
-                    return redirect('/landing')->with('success', 'Anda berhasil login');
+                    return redirect('/')->with('login', 'Anda berhasil login');
                 }
             } else {
                 return  redirect()->back()->with('errorpassword', 'Password salah');
@@ -49,7 +49,7 @@ class AuthController extends Controller
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-            return redirect('/')->with('success', 'Anda berhasil logout');
+            return redirect('/')->with('logout', 'Anda berhasil logout');
         }
     }
 }
