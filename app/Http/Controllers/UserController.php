@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = User::all()->where('id_role', '!=', '1');
+        $user = User::all()->where('id_role', '!=', '1')->sortBy('name');
         return view('admin.pages.user', [
             'user' => $user
         ]);

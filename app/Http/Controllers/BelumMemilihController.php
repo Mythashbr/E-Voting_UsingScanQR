@@ -21,6 +21,8 @@ class BelumMemilihController extends Controller
                 $query->select('id_user')->from('tb_detail_pemilihan')->where('id_pemilihan', $id_pemilihan);
             })
             ->where('id_role', '=', 2)
+            // tambahkan sort by name
+            ->orderBy('name', 'asc')
             ->get();
 
         return view('admin.pages.belum-memilih', [
@@ -44,6 +46,8 @@ class BelumMemilihController extends Controller
                 $query->select('id_user')->from('tb_detail_pemilihan')->where('id_pemilihan', $id_pemilihan);
             })
             ->where('id_role', '=', 2)
+            // tambahkan sort by name
+            ->orderBy('name', 'asc')
             ->get();
 
         return view('admin.pages.belum-memilih', [
