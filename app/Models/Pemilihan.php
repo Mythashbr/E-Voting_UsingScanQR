@@ -13,8 +13,6 @@ class Pemilihan extends Model
 
     protected $fillable = [
         'name',
-        'waktu_mulai',
-        'waktu_selesai',
         'status',
     ];
 

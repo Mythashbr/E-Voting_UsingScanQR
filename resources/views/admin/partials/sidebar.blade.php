@@ -34,9 +34,16 @@
             </li>
 
             <li class="nav-item w-100">
-                <a class="nav-link" href="/detail-pemilihan">
+                <a class="nav-link" href="/suara-pemilihan">
                     <i class="fe fe-users fe-16"></i>
-                    <span class="ml-3 item-text">Detail Pemilihan</span>
+                    <span class="ml-3 item-text">Suara Pemilihan</span>
+                </a>
+            </li>
+
+            <li class="nav-item w-100">
+                <a class="nav-link" href="/belum-memilih">
+                    <i class="fe fe-users fe-16"></i>
+                    <span class="ml-3 item-text">Belum Memilih</span>
                 </a>
             </li>
 

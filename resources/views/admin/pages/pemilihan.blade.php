@@ -43,8 +43,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Name</th>
-                                            <th>Waktu Mulai</th>
-                                            <th>Waktu Selesai</th>
+
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -57,8 +56,7 @@
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $data->name }}</td>
-                                            <td>{{ $data->waktu_mulai }}</td>
-                                            <td>{{ $data->waktu_selesai }}</td>
+
                                             <td>{{ $data->status }}</td>
 
 
@@ -115,65 +113,12 @@
                                                                 <input type="text" value="{{ $data->name }}" name="name" class="form-control" id="recipient-name" required>
                                                             </div>
 
-                                                            <div class="anjay">
-                                                                <div class="mb-2">
-                                                                    <label for="">Waktu Mulai</label>
-                                                                </div>
 
-                                                                <div class="form-row">
-
-                                                                    <div class="form-group col-md-8">
-                                                                        <label for="date-input1">Date Picker</label>
-                                                                        <div class="input-group">
-                                                                            <input type="text" class="form-control drgpicker" name="date_mulai" id="date-input1" value="04/24/2020" aria-describedby="button-addon2">
-                                                                            <div class="input-group-append">
-                                                                                <div class="input-group-text" id="button-addon-date"><span class="fe fe-calendar fe-16"></span></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group col-md-4">
-                                                                        <label for="time-input2">Time Picker</label>
-                                                                        <div class="input-group">
-                                                                            <input type="text" class="form-control time-input" name="waktu_mulai" id="time-input2" placeholder="" aria-describedby="button-addon2">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-
-                                                            </div>
-
-
-                                                            <div class="anjay">
-                                                                <div class="mb-2">
-                                                                    <label for="">Waktu Selesai</label>
-                                                                </div>
-
-                                                                <div class="form-row">
-
-                                                                    <div class="form-group col-md-8">
-                                                                        <label for="date-input1">Date Picker</label>
-                                                                        <div class="input-group">
-                                                                            <input type="text" class="form-control drgpicker" name="date_selesai" id="date-input1" value="04/24/2020" aria-describedby="button-addon2">
-                                                                            <div class="input-group-append">
-                                                                                <div class="input-group-text" id="button-addon-date"><span class="fe fe-calendar fe-16"></span></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group col-md-4">
-                                                                        <label for="time-input2">Time Picker</label>
-                                                                        <div class="input-group">
-                                                                            <input type="text" class="form-control time-input" name="waktu_selesai" id="time-input2" placeholder="" aria-describedby="button-addon2">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-
-                                                            </div>
 
                                                             <div class="form-group">
-                                                                <label for="example-select">Status Pengumpulan KTM</label>
-                                                                <select name="status_pengumpulan_ktm" class="form-control" id="example-select">
-                                                                    @if($data->status_pengumpulan_ktm == 'aktif')
+                                                                <label for="example-select">Status</label>
+                                                                <select name="status" class="form-control" id="example-select">
+                                                                    @if($data->status == 'aktif')
                                                                     <option selected value="aktif">
                                                                         Aktif</option>
                                                                     @else
@@ -225,60 +170,6 @@
                                                         <input type="text" value="" name="name" class="form-control" id="recipient-name" required>
                                                     </div>
 
-                                                    <div class="anjay">
-                                                        <div class="mb-2">
-                                                            <label for="">Waktu Mulai</label>
-                                                        </div>
-
-                                                        <div class="form-row">
-
-                                                            <div class="form-group col-md-8">
-                                                                <label for="date-input1">Date Picker</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control drgpicker" name="date_mulai" id="date-input1" value="04/24/2020" aria-describedby="button-addon2">
-                                                                    <div class="input-group-append">
-                                                                        <div class="input-group-text" id="button-addon-date"><span class="fe fe-calendar fe-16"></span></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group col-md-4">
-                                                                <label for="time-input2">Time Picker</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control time-input" name="waktu_mulai" id="time-input2" placeholder="" aria-describedby="button-addon2">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-
-
-                                                    <div class="anjay">
-                                                        <div class="mb-2">
-                                                            <label for="">Waktu Selesai</label>
-                                                        </div>
-
-                                                        <div class="form-row">
-
-                                                            <div class="form-group col-md-8">
-                                                                <label for="date-input1">Date Picker</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control drgpicker" name="date_selesai" id="date-input1" value="04/24/2020" aria-describedby="button-addon2">
-                                                                    <div class="input-group-append">
-                                                                        <div class="input-group-text" id="button-addon-date"><span class="fe fe-calendar fe-16"></span></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group col-md-4">
-                                                                <label for="time-input2">Time Picker</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control time-input" name="waktu_selesai" id="time-input2" placeholder="" aria-describedby="button-addon2">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
 
                                                     <div class="form-group">
                                                         <label for="example-select">Status</label>

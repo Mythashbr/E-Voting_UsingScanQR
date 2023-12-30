@@ -36,7 +36,7 @@
                     <div class="swiper-wrapper align-items-center">
                         @foreach ($calonketua as $calonketua)
                         <div class="swiper-slide mb-5">
-                            <img src="{{ asset('landing/assets/img/portfolio/portfolio-1.jpg') }}" alt="">
+                            <img src="{{ asset('images/'.$calonketua->foto) }}" class="img-rounded" alt="">
                             <div class="text-center swiper-slide-info mt-3">
                                 <h3>{{ $calonketua->name }}</h3>
                                 <a href="/detail-calon/{{ $calonketua->id }}" class="btn btn-warning btn-sm">Detail Calon</a>
@@ -74,7 +74,7 @@
                     <div class="swiper-wrapper align-items-center">
                         @foreach ($calonwakil as $calonwakil)
                         <div class="swiper-slide mb-5">
-                            <img src="{{ asset('landing/assets/img/portfolio/portfolio-1.jpg') }}" alt="">
+                            <img src="{{ asset('images/'.$calonwakil->foto) }}" class="img-rounded" alt="">
                             <div class="text-center swiper-slide-info mt-3">
                                 <h3>{{ $calonwakil->name }}</h3>
                                 <a href="/detail-calon/{{ $calonwakil->id }}" class="btn btn-warning btn-sm">Detail Calon</a>
@@ -109,6 +109,12 @@
 @if (Session::get('logout'))
 <script>
     Swal.fire("Good!", "Logout Berhasil", "success");
+
+</script>
+@endif
+@if (Session::get('pilihdulu'))
+<script>
+    Swal.fire("Opps!", "Silahkan Pilih Calon Terlebih Dahulu", "error");
 
 </script>
 @endif

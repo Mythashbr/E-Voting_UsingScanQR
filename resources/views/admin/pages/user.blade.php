@@ -36,6 +36,7 @@
                             <div class="table-responsive">
                                 <table class="table datatables table-hover responsive nowrap" style="width:100%" id="dataTable-1">
                                     <div class="align-right text-right mb-3">
+                                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#importModal">Import Excel</button>
                                         <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addModal">Add</button>
                                     </div>
 
@@ -132,6 +133,43 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                {{-- Import Excel --}}
+
+                                <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="defaultModalLabel">Import Excel Modal</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="/import-excel" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('POST')
+                                                <div class="modal-body">
+
+                                                    <div class="form-group mb-3">
+                                                        <label for="customFile">Custom file input</label>
+                                                        <div class="custom-file">
+                                                            <input type="file" name="file" class="custom-file-input" id="customFile">
+                                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn mb-2 btn-danger" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn mb-2 btn-success">Save
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                {{-- End --}}
                                 <!-- Add Modal -->
                                 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">

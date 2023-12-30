@@ -43,7 +43,7 @@
                     <div class="swiper-wrapper align-items-center">
 
                         <div class="swiper-slide">
-                            <img src="{{ asset('landing/assets/img/portfolio/portfolio-1.jpg') }}" alt="">
+                            <img src="{{ asset('images/'.$calon->foto) }}" alt="">
                         </div>
                     </div>
                     <div class="swiper-pagination"></div>
@@ -55,7 +55,7 @@
                     <h3>Calon information</h3>
                     <ul>
                         <li><strong>Name</strong>: {{ $calon->name }}</li>
-                        <li><strong>Client</strong>: ASU Company</li>
+                        <li><strong>No Urut</strong>: {{ $calon->no_urut }}</li>
                         <li><strong>Project date</strong>: 01 March, 2020</li>
                         <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
                     </ul>
@@ -73,16 +73,101 @@
                     </p>
                 </div>
 
+                @if (Auth::check())
+
+                <?php
+                $cek = DB::table('tb_detail_pemilihan')->where('id_user', Auth::user()->id)->where('id_pemilihan', $calon->id_pemilihan)->count();
+                ?>
+
+                @if ($cek > 0)
+                <div class="alert alert-warning alert-dismissible fade show mt-4">
+                    <strong>Anda sudah memilih</strong> Terimakasih sudah menggunakan hak pilih anda.
+                </div>
+
+                @else
 
 
+                <?php
+                            $cekpemilihan = DB::table('tb_pemilihan')->where('id', $calon->id_pemilihan)->first();
+                            ?>
 
+                @if ($cekpemilihan->status == "aktif")
 
+                <div class="alert alert-success alert-dismissible fade show mt-4">
+                    <strong>Pastikan anda memilih calon yang sesuai dengan hati nurani anda!</strong> Silahkan pilih.
+                </div>
+
+                <div class="text-center">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#pilihModal">
+                        Pilih
+                    </button>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="pilihModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Peringatan</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="/pilih-calon" method="post">
+                                @csrf
+                                <div class="modal-body">
+                                    <input hidden type="text" name="id_user" value="{{ Auth::user()->id }}">
+                                    <input hidden type="text" name="id_calon" value="{{ $calon->id }}">
+                                    <input hidden type="text" name="id_pemilihan" value="{{ $calon->id_pemilihan }}">
+                                    <div class="modal-body">
+                                        <p>Anda Yakin Akan Memilih {{ $calon->name }} ?</p>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">Yes</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                @else
+
+                <div class="alert alert-danger alert-dismissible fade show mt-4">
+                    <strong>Pemilihan tidak aktif!.</strong> Pemilihan telah dinonaktifkan.
+                </div>
+
+                @endif
+
+                @endif
+
+                @else
+
+                <div class="alert alert-danger alert-dismissible fade show mt-4">
+                    <strong>Anda belum login!</strong> Silahkan login terlebih dahulu untuk memilih calon.
+                </div>
+
+                @endif
             </div>
-
-
         </div>
+
 
     </div>
 </section>
 
+@endsection
+
+@section('sweetalert')
+@if (Session::get('error'))
+<script>
+    Swal.fire("Opps!", "Anda Sudah Memilih", "error");
+
+</script>
+@endif
+
+@if (Session::get('success'))
+<script>
+    Swal.fire("Good!", "Anda Berhasil Memilih", "success");
+
+</script>
+@endif
 @endsection
