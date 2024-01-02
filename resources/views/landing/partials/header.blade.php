@@ -16,6 +16,7 @@
                  </li>
              </ul>
 
+             <i class="bi bi-list mobile-nav-toggle"></i>
          </nav>
          @else
          <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" class="get-started-btn scrollto">Login</a>

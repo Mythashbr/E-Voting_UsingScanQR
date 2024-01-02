@@ -26,7 +26,7 @@
             <h2>Detail Calon</h2>
             <ol>
                 <li><a href="/">Home</a></li>
-                <li>Portfolio Details</li>
+                <li>Calon Details</li>
             </ol>
         </div>
 
@@ -51,26 +51,26 @@
             </div>
 
             <div class="col-lg-4">
-                <div class="portfolio-info">
+                <div class="portfolio-info mb-4">
                     <h3>Calon information</h3>
                     <ul>
                         <li><strong>Name</strong>: {{ $calon->name }}</li>
                         <li><strong>No Urut</strong>: {{ $calon->no_urut }}</li>
-                        <li><strong>Project date</strong>: 01 March, 2020</li>
-                        <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
                     </ul>
                 </div>
-                <div class="portfolio-description">
-                    <h2>Visi</h2>
-                    <p>
-                        {{ $calon->visi  }}
-                    </p>
-                </div>
-                <div class="portfolio-description">
-                    <h2>Misi</h2>
-                    <p>
-                        {{ $calon->misi  }}
-                    </p>
+                <div class="portfolio-info">
+                    <div class="portfolio-description">
+                        <h2>Visi</h2>
+                        <p>
+                            {{ $calon->visi  }}
+                        </p>
+                    </div>
+                    <div class="portfolio-description">
+                        <h2>Misi</h2>
+                        <p>
+                            {{ $calon->misi  }}
+                        </p>
+                    </div>
                 </div>
 
                 @if (Auth::check())

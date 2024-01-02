@@ -14,8 +14,9 @@ class LandingController extends Controller
 {
     public function index()
     {
-        $calonketua = Calon::where('id_pemilihan', '1')->orderBy('no_urut', 'asc')->get();
-        $calonwakil = Calon::where('id_pemilihan', '2')->orderBy('no_urut', 'asc')->get();
+
+        $datapemilihan = Pemilihan::with('calon')->get();
+
         // cek auth
         if (auth()->check()) {
             // cek role
@@ -23,19 +24,16 @@ class LandingController extends Controller
                 return redirect('/calon');
             } elseif (auth()->user()->id_role == '2') {
                 return view('landing.pages.landing', [
-                    'calonketua' => $calonketua,
-                    'calonwakil' => $calonwakil,
+                    'datapemilihan' => $datapemilihan,
                 ]);
             } else {
                 return view('landing.pages.landing', [
-                    'calonketua' => $calonketua,
-                    'calonwakil' => $calonwakil,
+                    'datapemilihan' => $datapemilihan,
                 ]);
             }
         } else {
             return view('landing.pages.landing', [
-                'calonketua' => $calonketua,
-                'calonwakil' => $calonwakil,
+                'datapemilihan' => $datapemilihan,
             ]);
         }
     }
