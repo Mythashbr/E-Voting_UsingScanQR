@@ -17,9 +17,6 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 </section><!-- End Hero -->
 
@@ -48,7 +45,7 @@
                         <div class="swiper-slide mb-5">
                             <img src="{{ asset('images/'. $calon->foto) }}" class="img-rounded" alt="">
                             <div class="text-center swiper-slide-info mt-3">
-                                <h3 class="mb-3">{{ $calon->no_urut }}</h3>
+                                <h3>{{ $calon->no_urut }}</h3>
                                 <h3>{{ $calon->name }}</h3>
                                 <a href="/detail-calon/{{ $calon->id }}" class="btn btn-warning btn-sm">Detail Calon</a>
                                 <p hidden>
