@@ -23,11 +23,24 @@ use App\Http\Controllers\BelumMemilihController;
 
 Route::get('/', [LandingController::class, 'index']);
 
+
 Route::get('/login', function () {
     return view('admin.login');
 });
 
 # ADMIN
+
+// update
+Route::put('/user/{id}', 'AuthController@update');
+
+//API Vote
+Route::get('/api/get-vote-counts', [SuaraPemilihanController::class, 'getVoteCounts']);
+
+
+// admin
+Route::get('/admin/login', [AuthController::class, 'showAdminLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AuthController::class, 'adminLogin']);
+
 
 // auth
 Route::post('/login', [AuthController::class, 'login']);

@@ -6,37 +6,47 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UserImport;
-
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $user = User::all()->where('id_role', '!=', '1')->sortBy('name');
-        return view('admin.pages.user', [
-            'user' => $user
-        ]);
+        $user = User::where('id_role', '!=', 1)->orderBy('name')->get();
+        return view('admin.pages.user', compact('user'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'username' => 'required|unique:tb_user',
-
-
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:tb_user',
+            'id_anggota' => 'required|string|max:255|unique:tb_user',
+            'email' => 'required|string|email|max:255|unique:tb_user',
         ], [
-            'name.required' => 'Nama user tidak boleh kosong',
-            'username.required' => 'NIM user tidak boleh kosong',
-            'username.unique' => 'NIM user sudah terdaftar',
-
+            'name.required' => 'Nama user tidak boleh kosong.',
+            'username.required' => 'N0 ID user tidak boleh kosong.',
+            'username.unique' => 'N0 ID user sudah terdaftar.',
+            'id_anggota.required' => 'ID Anggota tidak boleh kosong.',
+            'id_anggota.unique' => 'ID Anggota sudah terdaftar.',
+            'email.required' => 'Email tidak boleh kosong.',
+            'email.email' => 'Email tidak valid.',
+            'email.unique' => 'Email sudah terdaftar.',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         User::create([
             'name' => $request->name,
             'username' => $request->username,
-            'password' => $request->username,
-            'id_role' => 2,
+            'password' => bcrypt($request->username), // Menggunakan username sebagai password sementara
+            'id_anggota' => $request->id_anggota,
+            'email' => $request->email,
+            'id_role' => 2, // Hardcoded role untuk user
         ]);
 
         return redirect()->back()->with('store', 'Data berhasil ditambahkan');
@@ -45,40 +55,34 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'username' => 'required|unique:tb_user,username,' . $id,
-
-        ], [
-            'name.required' => 'Nama user tidak boleh kosong',
-            'username.required' => 'NIM user tidak boleh kosong',
-            'username.unique' => 'NIM user sudah terdaftar',
-
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:tb_user,username,' . $id,
+            'email' => 'required|string|email|max:255|unique:tb_user,email,' . $id,
         ]);
 
-        User::where('id', $id)->update([
-            'name' => $request->name,
-            'username' => $request->username,
-            'password' => $request->username,
-            'id_role' => 2,
-        ]);
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->save();
 
-        return redirect()->back()->with('update', 'Data berhasil diubah');
+        return redirect()->back()->with('update', 'Data Berhasil Diupdate');
     }
+
 
     public function destroy($id)
     {
-        User::where('id', $id)->delete();
+        User::findOrFail($id)->delete();
         return redirect()->back()->with('delete', 'Data berhasil dihapus');
     }
 
     public function import(Request $request)
     {
-        set_time_limit(500);
         $request->validate([
-            'file' => 'required|mimes:xls,xlsx'
+            'file' => 'required|mimes:xls,xlsx',
         ], [
-            'file.required' => 'File tidak boleh kosong',
-            'file.mimes' => 'File harus berupa excel'
+            'file.required' => 'File tidak boleh kosong.',
+            'file.mimes' => 'File harus berupa file Excel (xls, xlsx).',
         ]);
 
         $file = $request->file('file');

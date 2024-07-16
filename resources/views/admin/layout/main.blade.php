@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{{ asset('admin/logo/logo-kesgi.png') }}">
+    <link rel="icon" href="{{ asset('admin/logo/maritim.png') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title') - Evoting Jurusan Kesehatan Gigi Polkesbaya</title>
+    <title>@yield('title') -Pemilihan Duta Ekonomi Biru Indonesia </title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{ asset('admin/css/simplebar.css') }}">
     <!-- Fonts CSS -->

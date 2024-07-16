@@ -18,7 +18,7 @@ class IsUser
         if (auth()->user()->id_role == '2') {
             return $next($request);
         } else {
-            return redirect('/')->with('belumlogin', 'harus login dulu ngab');
+            return redirect('/')->with('belumlogin', 'login terlebih dahulu');
         }
     }
 }

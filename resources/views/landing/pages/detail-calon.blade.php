@@ -7,10 +7,10 @@
     <div class="container" data-aos="fade-up">
 
         <div class="text-center justify-content-center" data-aos="fade-up" data-aos-delay="150">
-            <img src="{{ asset('admin/logo/logo-kesgi.png') }}" height="200px" width="200px" alt="">
+            <img src="{{ asset('admin/logo/maritim.png') }}" height="200px" width="200px" alt="">
             <div class="text-center m-4 ">
-                <h1>Pemira Himpunan Jurusan Kesehatan Gigi</h1>
-                <h2>Politeknik Kesehatan Kemenkes Surabaya</h2>
+                <h1>Pemilihan Duta Ekonomi Biru Indonesia</h1>
+                <h2>Maritim Muda Nusantara</h2>
             </div>
         </div>
 

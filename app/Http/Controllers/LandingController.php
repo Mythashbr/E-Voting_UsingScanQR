@@ -3,37 +3,47 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Models\Calon;
-use App\Models\User;
 use App\Models\Pemilihan;
 use App\Models\DetailPemilihan;
-
+use Illuminate\Support\Facades\DB;
 
 class LandingController extends Controller
 {
     public function index()
     {
-
         $datapemilihan = Pemilihan::with('calon')->get();
+
+        // Ambil data jumlah suara untuk setiap calon
+        $jumlahsuara = [];
+        foreach ($datapemilihan as $pemilihan) {
+            $calon = Calon::where('id_pemilihan', $pemilihan->id)->get();
+            foreach ($calon as $c) {
+                $count = DetailPemilihan::where('id_calon', $c->id)->count();
+                $jumlahsuara[$c->id] = $count;
+            }
+        }
 
         // cek auth
         if (auth()->check()) {
             // cek role
             if (auth()->user()->id_role == '1') {
                 return redirect('/calon');
-            } elseif (auth()->user()->id_role == '2') {
+            } else if (auth()->user()->id_role == '2') {
                 return view('landing.pages.landing', [
                     'datapemilihan' => $datapemilihan,
+                    'jumlahsuara' => $jumlahsuara, // Mengirimkan jumlah suara ke blade
                 ]);
             } else {
                 return view('landing.pages.landing', [
                     'datapemilihan' => $datapemilihan,
+                    'jumlahsuara' => $jumlahsuara, // Mengirimkan jumlah suara ke blade
                 ]);
             }
         } else {
             return view('landing.pages.landing', [
                 'datapemilihan' => $datapemilihan,
+                'jumlahsuara' => $jumlahsuara, // Mengirimkan jumlah suara ke blade
             ]);
         }
     }

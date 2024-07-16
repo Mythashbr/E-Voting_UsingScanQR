@@ -25,3 +25,22 @@ return new class extends Migration
         Schema::dropIfExists('tb_detail_pemilihan');
     }
 };
+
+class UpdateForeignKeysOnTbDetailPemilihan extends Migration
+{
+    public function up()
+    {
+        Schema::table('tb_detail_pemilihan', function (Blueprint $table) {
+            $table->dropForeign(['id_user']);
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+        });
+    }
+
+    public function down()
+    {
+        Schema::table('tb_detail_pemilihan', function (Blueprint $table) {
+            $table->dropForeign(['id_user']);
+            $table->foreign('id_user')->references('id')->on('users');
+        });
+    }
+}

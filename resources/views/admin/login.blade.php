@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="https://semnasjkgsby.com/landing/logo/logo-semnas-2.png">
-    <title>Login - Evoting Jurusan Kesehatan Gigi Polkesbaya</title>
+    <title>Login - Pemilihan Duta Ekonomi Biru Indonesia</title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{ asset('admin/css/simplebar.css') }}">
     <!-- Fonts CSS -->
@@ -24,7 +24,7 @@
 <body class="light ">
     <div class="wrapper vh-100">
         <div class="row align-items-center h-100">
-            <form action="/login" method="POST" class="col-lg-3 col-md-4 col-10 mx-auto text-center">
+            <form action="{{ route('admin.login') }}" method="POST" class="col-lg-3 col-md-4 col-10 mx-auto text-center" enctype="multipart/form-data">
                 @csrf
                 <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="">
                     {{-- <svg version="1.1" id="logo" class="navbar-brand-img brand-md" xmlns="http://www.w3.org/2000/svg"
@@ -38,18 +38,19 @@
                     </svg> --}}
                     <img src="https://maxilla2023.my.id/logo-jkg.png" height="200px" alt="">
                 </a>
-                <h1 class="h6 mb-3">Sign in</h1>
+                <h1 class="h6 mb-3">Admin Sign in</h1>
 
                 <div class="form-group">
                     <label for="inputEmail" class="sr-only">Username</label>
-                    <input type="text" name="username" id="inputEmail" value="{{ Session::get('username') }}" class="form-control form-control-lg" placeholder="Email address" required="" autofocus="">
+                    <input type="text" name="username" id="inputEmail" value="{{ old('username') }}" class="form-control form-control-lg" placeholder="Username" required autofocus>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword" class="sr-only">Password</label>
-                    <input type="password" name="password" id="inputPassword" value="{{ Session::get('password') }}" class="form-control form-control-lg" placeholder="Password" required="">
+                    <input type="password" name="password" id="inputPassword" class="form-control form-control-lg" placeholder="Password" required>
                 </div>
+
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-                <p class="mt-5 mb-3 text-muted">© 2023</p>
+                <p class="mt-5 mb-3 text-muted">© 2024</p>
             </form>
         </div>
     </div>

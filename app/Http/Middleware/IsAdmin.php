@@ -18,7 +18,7 @@ class IsAdmin
         if (auth()->user()->id_role == '1') {
             return $next($request);
         } else {
-            return redirect('/login')->with('belumlogin', 'harus login dulu ngab');
+            return redirect('/login')->with('belumlogin', 'login terlebih dahulu');
         }
     }
 }

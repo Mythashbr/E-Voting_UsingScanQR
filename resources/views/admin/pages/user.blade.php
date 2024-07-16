@@ -7,9 +7,6 @@
     <div class="row justify-content-center">
         <div class="col-12">
             <h2 class="mb-2 page-title">Data User</h2>
-            {{-- <p class="card-text">DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool,
-                    built upon the foundations of progressive enhancement, that adds all of these advanced features to any
-                    HTML table. </p> --}}
             <div class="row my-4">
                 <!-- Small table -->
                 <div class="col-md-12">
@@ -91,44 +88,42 @@
                                         </div>
 
                                         <!-- Edit Modal -->
-                                        <div class="modal fade" id="editModal{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="defaultModalLabel">Edit Modal</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form action="/user/{{ $data->id }}" method="POST">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <div class="modal-body">
+                                        <!-- Edit Modal -->
+<div class="modal fade" id="editModal{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="defaultModalLabel">Edit Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/user/{{ $data->id }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Name</label>
+                        <input type="text" value="{{ $data->name }}" name="name" class="form-control" id="recipient-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-username" class="col-form-label">Username</label>
+                        <input type="text" value="{{ $data->username }}" name="username" class="form-control" id="recipient-username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-email" class="col-form-label">Email</label>
+                        <input type="email" value="{{ $data->email }}" name="email" class="form-control" id="recipient-email" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn mb-2 btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn mb-2 btn-success">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-
-                                                            <div class="form-group">
-                                                                <label for="recipient-name" class="col-form-label">Name
-                                                                </label>
-                                                                <input type="text" value="{{ $data->name }}" name="name" class="form-control" id="recipient-name" required>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="recipient-name" class="col-form-label">Username
-                                                                </label>
-                                                                <input type="text" value="{{ $data->username }}" name="username" class="form-control" id="recipient-name" required>
-                                                            </div>
-
-
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn mb-2 btn-danger" data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn mb-2 btn-success">Save
-                                                                changes</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                         @endforeach
                                     </tbody>
@@ -171,41 +166,46 @@
 
                                 {{-- End --}}
                                 <!-- Add Modal -->
-                                <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="defaultModalLabel">Add Modal</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <form action="/user" method="POST">
-                                                @csrf
-                                                @method('POST')
-                                                <div class="modal-body">
-
-                                                    <div class="form-group">
-                                                        <label for="recipient-name" class="col-form-label">Name
-                                                        </label>
-                                                        <input type="text" value="" name="name" class="form-control" id="recipient-name" required>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="recipient-name" class="col-form-label">Username
-                                                        </label>
-                                                        <input type="text" value="" name="username" class="form-control" id="recipient-name" required>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn mb-2 btn-danger" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn mb-2 btn-success">Save
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- Add Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="defaultModalLabel">Add Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/user" method="POST">
+                @csrf
+                @method('POST')
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Name</label>
+                        <input type="text" value="" name="name" class="form-control" id="recipient-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-username" class="col-form-label">Username</label>
+                        <input type="text" value="" name="username" class="form-control" id="recipient-username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-id_anggota" class="col-form-label">ID Anggota</label>
+                        <input type="text" value="" name="id_anggota" class="form-control" id="recipient-id_anggota" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-email" class="col-form-label">Email</label>
+                        <input type="email" value="" name="email" class="form-control" id="recipient-email" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn mb-2 btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn mb-2 btn-success">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
                             </div>
                         </div>
                     </div>

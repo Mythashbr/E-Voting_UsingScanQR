@@ -4,7 +4,7 @@
 
          {{-- <h1 class="logo me-auto me-lg-0"><a href="/">Gp<span>.</span></a></h1> --}}
          <!-- Uncomment below if you prefer to use an image logo -->
-         <a href="/" class="logo me-auto me-lg-0"><img src="{{ asset('admin/logo/logo-kesgi.png') }}" alt="" class="img-fluid"></a>
+         <a href="/" class="logo me-auto me-lg-0"><img src="{{ asset('admin/logo/maritim.png') }}" alt="" class="img-fluid"></a>
 
          @if (Auth::check())
          <nav id="navbar" class="navbar order-last order-lg-0">
